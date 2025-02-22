@@ -1,0 +1,23 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Environment variables
+.env
+
+# CSV Files
+data/*.csv
+
+# Zarf
+zarf/compose/database-data/data
+database-data/
+
+# Mac
+.DS_Store

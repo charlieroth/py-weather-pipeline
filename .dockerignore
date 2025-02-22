@@ -1,0 +1,8 @@
+.git/
+.dockerignore
+.gitignore
+zarf/docker/
+LICENSE
+Makefile
+README.md
+!zarf/compose/database-data

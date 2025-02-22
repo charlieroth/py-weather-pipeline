@@ -1,0 +1,20 @@
+[project]
+name = "py-weather-pipeline"
+version = "0.1.0"
+dependencies = [
+    "httpx>=0.28.1",
+    "polars>=1.22.0",
+    "prefect>=3.2.6",
+    "pydantic>=2.10.6",
+    "pydantic-settings>=2.8.0",
+]
+requires-python = ">=3.12"
+description = "ETL pipeline for processing weather data"
+authors = [{ name = "Charlie Roth", email = "charlieroth4@gmail.com" }]
+maintainers = [{ name = "Charlie Roth", email = "charlieroth4@gmail.com" }]
+readme = "README.md"
+license = { file = "LICENSE" }
+keywords = ["etl", "prefect", "polars", "postgresql", "python"]
+
+[project.urls]
+Repository = "https://github.com/charlieroth/py-weather-pipeline"

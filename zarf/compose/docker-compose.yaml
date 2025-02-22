@@ -1,0 +1,35 @@
+services:
+  database:
+    image: postgres:17.3
+    container_name: database
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: weather
+    volumes:
+      - ./database-data:/var/lib/postgresql/data
+      - ./pg_hba.conf:/etc/pg_hba.conf
+    command: ["-c", "hba_file=/etc/pg_hba.conf"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h localhost -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    cpu_count: 2
+    networks:
+      weather-pipeline-network:
+        ipv4_address: 10.5.0.2
+
+volumes:
+  database: {}
+
+networks:
+  weather-pipeline-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.5.0.0/24
