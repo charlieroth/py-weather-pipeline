@@ -3,6 +3,7 @@ name = "py-weather-pipeline"
 version = "0.1.0"
 dependencies = [
     "httpx>=0.28.1",
+    "pip>=25.0.1",
     "polars>=1.22.0",
     "prefect>=3.2.6",
     "pydantic>=2.10.6",
