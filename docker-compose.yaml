@@ -1,0 +1,40 @@
+services:
+  database:
+    image: postgres:17.3
+    container_name: database
+    restart: unless-stopped
+    tty: true
+    cpu_count: 2
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=weather
+    volumes:
+      - weather_postgres_data:/var/lib/postgresql
+    networks:
+      - weather-pipeline-network
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -h localhost -u postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+  migrations:
+    image: ghcr.io/emilpriver/geni:v1.1.5
+    container_name: migrations
+    networks:
+      - weather-pipeline-network
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@database:5432/weather
+    volumes:
+      - ./migrations:/migrations
+    command: up
+
+networks:
+  weather-pipeline-network:
+
+
+volumes:
+  weather_postgres_data: {}
